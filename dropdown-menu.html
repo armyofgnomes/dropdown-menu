@@ -1,27 +1,107 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-label/iron-label.html">
 
+<!--
+A simple dropdown menu. Add an item to be clicked
+with a `dropdown-category` class and follow it up
+with an ordered or unordered list.
+
+Example:
+<dropdown-menu>
+  <a class="dropdown-category">Menu Category</a>
+  <ul>
+    <li><a href="/item_1">Item 1</a></li>
+    <li><a href="/item_2">Item 2</a></li>
+    <li><a href="/item_3">Item 3</a></li>
+  </ul>
+</dropdown-menu>
+
+@element dropdown-menu
+@demo demo/index.html
+-->
 <dom-module id="dropdown-menu">
   <template>
     <style>
       :host {
+        box-sizing: border-box;
+        color: #333;
+        display: inline-block;
+        position: relative;
+      }
+
+      /* TODO: Come up with nice default focus styles */
+      :host(:focus) {
+        outline: none;
+      }
+
+      input[type=checkbox]{
+        display: none;
+      }
+
+      iron-label ::content .dropdown-category {
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        box-sizing: border-box;
+        cursor: pointer;
+        display: inline-block;
+        padding: 15px 20px;
+        text-align: center;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        width: 100%;
+      }
+
+      :host ::content ul {
+        background-color: #fff;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+        display: none;
+        list-style: none;
+        margin:0;
+        padding:0;
+        position: absolute;
+        text-align: left;
+        width: 100%;
+        z-index: 1;
+      }
+
+      :host ::content ul li {
+        color: inherit;
+        cursor: pointer;
+        margin-bottom: 1px;
+        padding: 15px;
+      }
+
+      :host ::content ul li:hover{
+        background-color: #333;
+        color: #fff;
+      }
+
+      :host ::content ul li a{
+        color: inherit;
+        text-decoration: none;
+      }
+
+      input[type=checkbox]:checked ~ .dropdown-items ::content ul {
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]</h2>
+    <iron-label for="menu-item">
+      <content select=".dropdown-category"></content>
+    </iron-label>
+    <input type="checkbox" id="menu-item">
+    <div class="dropdown-items">
+      <content select="ul, ol"></content>
+    </div>
   </template>
 
   <script>
     Polymer({
-
       is: 'dropdown-menu',
 
-      properties: {
-        prop1: {
-          type: String,
-          value: 'dropdown-menu',
-        },
-      },
-
+      hostAttributes: {
+        tabIndex: 0,
+      }
     });
   </script>
 </dom-module>

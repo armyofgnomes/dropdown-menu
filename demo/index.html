@@ -12,6 +12,9 @@
     <link rel="import" href="../dropdown-menu.html">
 
     <style is="custom-style" include="demo-pages-shared-styles">
+      body {
+        font-family: sans-serif;
+      }
     </style>
   </head>
   <body>
@@ -20,10 +23,39 @@
       <h3>Basic dropdown-menu Demo</h3>
       <demo-snippet>
         <template>
-          <dropdown-menu></dropdown-menu>
+          <dropdown-menu>
+            <a class="dropdown-category">Menu Category</a>
+            <ul>
+              <li><a href="/item_1">Item 1</a></li>
+              <li><a href="/item_2">Item 2</a></li>
+              <li><a href="/item_3">Item 3</a></li>
+            </ul>
+          </dropdown-menu>
+        </template>
+      </demo-snippet>
+
+      <h3>Multiple dropdown menus</h3>
+      <demo-snippet>
+        <template>
+          <nav>
+            <dropdown-menu>
+              <a class="dropdown-category">Menu One</a>
+              <ul>
+                <li><a href="/item_1">Item 1</a></li>
+                <li><a href="/item_2">Item 2</a></li>
+                <li><a href="/item_3">Item 3</a></li>
+              </ul>
+            </dropdown-menu><dropdown-menu>
+              <a class="dropdown-category">Menu Two</a>
+              <ul>
+                <li><a href="/item_1">Item 1</a></li>
+                <li><a href="/item_2">Item 2</a></li>
+                <li><a href="/item_3">Item 3</a></li>
+              </ul>
+            </dropdown-menu>
+          </nav>
         </template>
       </demo-snippet>
     </div>
-
   </body>
 </html>
